@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Add Employe</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="container" style="margin-top: 50px;">
+
+	<% if (messages.error) { %>
+	<div class="alert alert-danger" role="alert"><%- messages.error %></div>
+	<% } %>
+
+    <div class="card">
+    	<div class="card-header">
+			Add Employe
+		</div>
+        <div class="card-body">
+            <form action="/employee/add" method="post" id="frm" name="frm" onsubmit="return ValidateForm(this);">
+                <script type="text/javascript" >
+                    function ValidateForm(frm) {
+
+                        if (frm.FirstName.value == "") { alert('First name is required.'); frm.FirstName.focus(); return false; }
+                        if (frm.LastName.value == "") { alert('Last name is required.'); frm.LastName.focus(); return false; }
+                        if (frm.Email.value == "") { alert('Email address is required.'); frm.Email.focus(); return false; }
+                        if (frm.Email.value.indexOf("@") < 1 || frm.Email.value.indexOf(".") < 1) { alert('Please enter a valid email address.'); frm.Email.focus(); return false; }
+                        if (frm.Password.value == "") { alert('Password is required.'); frm.Password.focus(); return false; }
+                        if (frm.CPassword.value == "") { alert('Confirm Password is required.'); frm.CPassword.focus(); return false; }
+                        if (frm.CPassword.value !== frm.Password.value) { alert('Password Not Matched'); frm.CPassword.focus(); return false; }
+
+
+                        return true;
+                    }
+                </script>
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" class="form-control" name="FirstName" value="<%= FirstName %>" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" class="form-control" name="LastName" value="<%= LastName %>" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" name="Email" value="<%= Email %>" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" class="form-control" name="Password" value="<%= Password %>" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password:</label>
+                    <input type="password" class="form-control" name="CPassword" value="<%= CPassword %>" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-info" value="Add"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

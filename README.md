@@ -12,3 +12,4 @@
         -LastName(varchar)
         -Email(varchar)
         -Password(varchar)
+        -Gender(varchar)
